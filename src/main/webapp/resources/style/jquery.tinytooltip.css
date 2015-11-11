@@ -1,0 +1,27 @@
+.tinytooltip {
+	display: block;
+	margin-left:80px;
+	position: absolute;
+	z-index: 1000;
+	width: 200px;
+}
+	.tinytooltip .arrow {
+		height: 10px;
+		display: block;
+		z-index: 3000;
+		position: relative;
+		margin-bottom: -1px;
+	}
+.tinytooltip .message {
+	background: #f3eabc;
+	padding: 8px;
+	border: 1px solid #dbd3ab;
+	border-radius: 3px;
+	display: block;
+	
+	font-size: 11px;
+	line-height: 11px;
+	text-align: left;
+	z-index: 2000;
+	position: relative;
+}
