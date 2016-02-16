@@ -38,13 +38,13 @@
 		<div style="padding-left: 600px;padding-top:200px;">
 			<form id="loginform" action="${ctx}/main/login">
 				<span>统一用户中心</span><br></br>
-				<input class="easyui-textbox validatebox" id="userAccountName"
-					name="userAccountName"
+				<input class="easyui-textbox validatebox" id="username"
+					name="username"
 					data-options="required:true,validType:'length[1,30]'"
 					style="width: 155px;" /> <br>
 				<br>
-				<br> <input class="easyui-textbox validatebox" id="pwd"
-					name="pwd" data-options="required:true,validType:'length[1,50]'"
+				<br> <input class="easyui-textbox validatebox" id="password"
+					name="password" data-options="required:true,validType:'length[1,50]'"
 					style="width: 155px;" />&nbsp;&nbsp;&nbsp;&nbsp;<font color="red">${errmsg }</font><br>
 				<br>
 				<br> <input type=button value="登陆" onclick="mysubmit()">

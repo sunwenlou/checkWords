@@ -3,7 +3,6 @@ package com.sun.wen.lou.newtec.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,10 +16,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sun.wen.lou.newtec.entity.Resource;
 import com.sun.wen.lou.newtec.entity.SysArea;
+import com.sun.wen.lou.newtec.entity.User;
 import com.sun.wen.lou.newtec.entity.UserAccount;
 import com.sun.wen.lou.newtec.service.ResourceService;
 import com.sun.wen.lou.newtec.service.UserAccountService;
 import com.sun.wen.lou.newtec.service.UserService;
+import com.sun.wen.lou.newtec.util.JsonUtils;
 
 /**
  * @author checkSun 登陆相关
@@ -42,14 +43,20 @@ public class MainController {
 
 	@RequestMapping("/menu")
 	@ResponseBody
-	public Map<String, Object> index(String username, Model model,HttpServletRequest request) {
-		/*Set<String> permissions = userService.findPermissions(username);
-		List<Resource> menus = resourceService.findMenus(permissions);*/
+	public Map<String, Object> index(String username, Model model,
+			HttpServletRequest request) {
+		/*
+		 * Set<String> permissions = userService.findPermissions(username);
+		 * List<Resource> menus = resourceService.findMenus(permissions);
+		 */
+		if(username!=null){
+			username=username.trim();
+		}
 		List<Resource> menus = resourceService.findUserResource(username);
-		
+
 		model.addAttribute("menus", menus);
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+
 		StringBuffer srtBackUrl = new StringBuffer();
 		srtBackUrl.append("http://");
 		// 服务器地址
@@ -63,7 +70,7 @@ public class MainController {
 		sys.setSysId(1);
 		sys.setSysName("统一用户中心");
 		sys.setSysFlag("UUCENTER");
-		//http://localhost:8080/uucCenter
+		// http://localhost:8080/uucCenter
 		sys.setSysDomain(srtBackUrl.toString());
 		map.put("menus", menus);
 		map.put("system", sys);
@@ -76,17 +83,37 @@ public class MainController {
 		return "index";
 	}
 
-	@RequestMapping(value = "/login")
-	public String login(HttpServletRequest request, Model model,
-			UserAccount loginuser) {
-		UserAccount user = new UserAccount();
-		user.setUserAccountName(loginuser.getUserAccountName());
-		user.setPwd(loginuser.getPwd());
+	/**
+	 * <br>描 述：获取所有菜单
+	 * <br>作 者：checkSun
+	 * <br>历 史: (版本) 作者 时间 注释
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/getMenusAll")
+	@ResponseBody
+	public String getMenusAll(HttpServletRequest request) {
+		String menus = "";
+		List<Resource> resoucemenus = resourceService.findUserResource("");
 		try {
-			user = userAccountService.queryUserAccount(user);
+			menus=JsonUtils.getJsonForString(resoucemenus);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return menus;
+	}
+
+	@RequestMapping(value = "/login")
+	public String login(HttpServletRequest request, Model model, User loginuser) {
+		User user = new User();
+		user.setUsername(loginuser.getUsername());
+		user.setPassword(loginuser.getPassword());
+		try {
+			user = userService.queryUserAccount(user);
 			if (null != user) {
 				request.setAttribute("user", user);
-				request.setAttribute("username",user.getUserAccountName());
+				request.setAttribute("username", user.getUsername());
 				return "login";
 			}
 		} catch (Exception e) {
@@ -155,4 +182,18 @@ public class MainController {
 		// map.put("system", sys);
 		return map;
 	}
+
+	/**
+	 * “无操作权限”的提示页面
+	 * 
+	 * @author Administrator
+	 * @date 2015年4月29日
+	 * @time 下午6:56:13
+	 * @return
+	 */
+	@RequestMapping(value = "/noperms")
+	public String noperms() {
+		return "/noperms";
+	}
+
 }

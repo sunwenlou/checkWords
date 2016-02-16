@@ -37,7 +37,7 @@ var username='${username}';
 	<div region="north" split="false" border="false">
 		<div  class="header">
 			<div class="dl-log">
-				欢迎您 &nbsp; ${user.userAccountName}，==${username }<span class="dl-log-user" id="update"></span>&nbsp;&nbsp;今天是<span
+				欢迎您 &nbsp; ${user.username}，==${username }<span class="dl-log-user" id="update"></span>&nbsp;&nbsp;今天是<span
 					id="linkweb"></span> <a href="${ctx}/main/logout" title="退出系统" class="dl-log-quit">[退出]</a><br>
 					</div>
 			</div>
