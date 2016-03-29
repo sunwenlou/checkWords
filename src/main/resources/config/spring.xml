@@ -9,10 +9,5 @@ http://www.springframework.org/schema/util/spring-util-3.0.xsd
 ">
 	<!-- 引入属性文件 -->
 		<context:property-placeholder location="classpath:config/basedb.properties" />
-	<context:property-placeholder location="classpath:config/redis.properties" />
-	<context:property-placeholder location="classpath:config/shiro.properties" />
-	<util:properties id="shiroProperties" location="classpath:config/shiro.properties" />
-	<!-- 自动扫描(自动注入) -->
-	<context:component-scan base-package="com.sun.wen.lou.newtec.service.impl" />
-	<bean  id="redisClient" class="com.sun.wen.lou.newtec.redis.RedisClient"></bean>
+		<util:properties id="messagesend" location="classpath:config/messagesend.properties" />
 </beans>

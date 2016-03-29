@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>uucCenter</artifactId>
+	<artifactId>checkWords</artifactId>
 	<packaging>war</packaging>
 	<parent>
 		<groupId>com.sun.myStruct.newTecanolegy</groupId>
@@ -17,7 +17,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>uucCenter</finalName>
+		<finalName>checkWords</finalName>
 		<resources>
 			<resource>
 				<directory>${project.basedir}/src/main/resources</directory>
@@ -26,8 +26,6 @@
 		</resources>
 		<filters>
 			<filter>src/main/resources/${env}/jdbc.properties</filter>
-			<filter>src/main/resources/${env}/redis.properties</filter>
-			<filter>src/main/resources/${env}/shiro.properties</filter>
 			<filter>src/main/resources/${env}/msgsend.properties</filter>
 			<filter>src/main/resources/${env}/messagesend.properties</filter>
 		</filters>

@@ -17,19 +17,16 @@
 <script
 	src="${ctx}/resources/pluginJs/zTree/js/jquery.ztree.all-3.5.min.js"></script>
 <body>
-<a href="${ctx }/organization/tree">点击刷新树</a>
-	<ul id="tree" class="ztree"></ul>
-<iframe name="content" class="ui-layout-center"
-        src="" frameborder="0" scrolling="auto"></iframe>
-
+	<table border="1" style="padding-top:10px;">
+		<tr>
+			<td width="100px;" style="padding-top:10px;" valign="top"><a href="${ctx }/organization/getFile">点击刷新树</a><ul id="tree" class="ztree"></ul></td>
+			<td>	<iframe name="content" class="ui-layout-center" src="" frameborder="0"
+			scrolling="auto" height="600" width="1200" id="iframepage"></iframe></td>
+		</tr>
+	</table>
+	
 	<script>
-	var msg='${msg}';
-    if(msg){
-    	$.message.alert();
-    	jQuery.messager.alert("提示:",msg);
-    	
-    }
-    
+
     $(function () {
         var setting = {
             data: {
@@ -54,6 +51,18 @@
             $.fn.zTree.init($("#tree"), setting, zNodes);
         });
     });
+</script>
+
+
+	<script type="text/javascript" language="javascript">   
+function iFrameHeight() {   
+var ifm= document.getElementById("iframepage");   
+var subWeb = document.frames ? document.frames["iframepage"].document : ifm.contentDocument;   
+if(ifm != null && subWeb != null) {
+   ifm.height = subWeb.body.scrollHeight;
+   ifm.width = subWeb.body.scrollWidth;
+}   
+}   
 </script>
 </body>
 </html>

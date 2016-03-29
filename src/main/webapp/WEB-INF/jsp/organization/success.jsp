@@ -4,10 +4,10 @@
     <title></title>
 </head>
 <body>
-    操作成功，<a href="#"onclick="refreshs()">点击刷新树</a>
+    操作成功 222222222222222222222222222
 </body>
 <script>
-
+alert(123);
 function refreshs(){
 	
 	window.parent.location.reload();
